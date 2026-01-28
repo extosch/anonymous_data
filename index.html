@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahlen Ersetzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            background-color: #f9f9f9;
+            font-family: monospace;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #764ba2;
+        }
+        
+        .info {
+            background-color: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Zahlen Ersetzer</h1>
+        
+        <div class="form-group">
+            <label for="input">Eingabe (Text mit Zahlen):</label>
+            <input 
+                type="text" 
+                id="input" 
+                placeholder="Geben Sie Text ein, z.B. Max123mustermann456"
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="output">Ausgabe (Zahlen durch * ersetzt):</label>
+            <textarea id="output" readonly placeholder="Hier erscheint das Ergebnis..."></textarea>
+        </div>
+        
+        <button onclick="clearFields()">Zurücksetzen</button>
+        
+        <div class="info">
+            ℹ️ Alle Ziffern (0-9) werden automatisch durch * ersetzt.
+        </div>
+    </div>
+
+    <script>
+        const inputField = document.getElementById('input');
+        const outputField = document.getElementById('output');
+
+        // Event Listener für Live-Aktualisierung
+        inputField.addEventListener('input', function() {
+            const inputValue = this.value;
+            // Alle Zahlen durch * ersetzen
+            const outputValue = inputValue.replace(/[0-9]/g, '*');
+            outputField.value = outputValue;
+        });
+
+        // Funktion zum Zurücksetzen
+        function clearFields() {
+            inputField.value = '';
+            outputField.value = '';
+            inputField.focus();
+        }
+
+        // Focus auf Input-Feld setzen
+        inputField.focus();
+    </script>
+</body>
+</html>
